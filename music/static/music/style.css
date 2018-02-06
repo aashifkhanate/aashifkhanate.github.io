@@ -1,0 +1,40 @@
+body{
+  background: url('images/background.jpg');
+  color: white;
+}
+
+a{
+  color: white;
+}
+
+#logo{
+  max-width:80px;
+  max-height:50px;
+  width: auto;
+  height: auto;
+}
+
+
+.navbar{
+  padding: 0px;
+  background-color: rgba(30, 30, 30, 0.8);
+  font-size: 20px;
+  font-family: 'Cedarville Cursive', cursive;
+}
+
+#home_link{
+  color: yellow;
+  font-size: 40px;
+}
+
+.active a{
+  background-color: rgba(20, 20, 20, 0.4) !important;
+}
+
+.navbar-header{
+  padding-right: 30px;
+}
+
+.form-group input[type=text]{
+  width:400px !important
+}
