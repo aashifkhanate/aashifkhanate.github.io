@@ -25,7 +25,7 @@ SECRET_KEY = '*gpf*qkxyhdhage#3hd*)@!h#k08no(bqx)94ahhzbr%b13ubo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['onixmusic.herokuapp.com']
 
 
 # Application definition
