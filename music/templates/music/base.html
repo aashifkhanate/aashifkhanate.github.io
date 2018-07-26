@@ -29,13 +29,13 @@
               </a>
             </li>
             <li class="">
-              <a href="#">
+              <a href="{%url 'music:songs'%}">
                 <span class="glyphicon glyphicon-music" aria-hidden="false"></span>&nbsp;Songs
               </a>
             </li>
           </ul>
 
-          <form class="navbar-form navbar-left" action="#" method="get" role="search">
+          <form class="navbar-form navbar-left" action="{%url 'music:search'%}" method="get" role="search">
             <div class="form-group">
               <input type="text" name="q" value="" class="form-control">
             </div>

@@ -6,12 +6,34 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.views.generic import View
 from .forms import UserForm
+from django.db.models import Q
+
+
+class SearchView(generic.ListView):
+    template_name = 'music/search.html'
+    context_object_name = 'all_songs'
+    def get_queryset(self):
+        queryset_list = Song.objects.all()
+        query = self.request.GET.get("q")
+        if query:
+            queryset_list = queryset_list.filter(
+                Q(song_title__icontains=query)
+            )
+        return queryset_list
+
+
 
 class IndexView(generic.ListView):
     template_name = 'music/index.html'
     context_object_name = 'all_albums'
     def get_queryset(self):
         return Album.objects.all()
+
+class SongList(generic.ListView):
+    template_name = 'music/songs.html'
+    context_object_name = 'all_songs'
+    def get_queryset(self):
+        return Song.objects.all()
 
 class DetailView(generic.DetailView):
     model = Album
@@ -51,5 +73,5 @@ class UserFormView(View):
                 if user.is_active:
                     login(request, user)
                     return redirect('music:index')
-                    
+
         return render(request, self.template_name, {'form': form})
