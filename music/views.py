@@ -75,3 +75,7 @@ class UserFormView(View):
                     return redirect('music:index')
 
         return render(request, self.template_name, {'form': form})
+
+class SongCreate(CreateView):
+    model = Song
+    fields = ['album', 'song_title', 'song_file']

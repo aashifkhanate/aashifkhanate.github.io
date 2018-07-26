@@ -4,7 +4,11 @@
 
 <ul>
   {% for song in all_songs %}
-    {{song.song_title}}.{{song.file_type}} - {{song.album.artist}}
+  	<p>
+  		{%url 'music:index'%}
+  		{{request.get_host}}
+    <a href="http://{{request.get_host}}/media/{{song.song_file}}">{{song.song_title}}.{{song.file_type}} - {{song.album.artist}}</a>
+	</p>
   {% endfor %}
 </ul>
 
