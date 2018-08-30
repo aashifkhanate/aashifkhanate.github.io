@@ -3,11 +3,9 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from rest_framework.urlpatterns import format_suffix_patterns
-from companies import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^stock/', views.StockList.as_view()),
     url(r'^', include('music.urls')),
 ]
 

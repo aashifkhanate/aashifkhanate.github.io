@@ -1,15 +1,14 @@
-from django.views import generic
 from .models import Album, Song
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
-from django.views.generic import View
+from django.views.generic import View, ListView, DetailView
 from .forms import UserForm
 from django.db.models import Q
 
 
-class SearchView(generic.ListView):
+class SearchView(ListView):
     template_name = 'music/search.html'
     context_object_name = 'all_songs'
     def get_queryset(self):
@@ -23,19 +22,19 @@ class SearchView(generic.ListView):
 
 
 
-class IndexView(generic.ListView):
+class IndexView(ListView):
     template_name = 'music/index.html'
     context_object_name = 'all_albums'
     def get_queryset(self):
         return Album.objects.all()
 
-class SongList(generic.ListView):
+class SongList(ListView):
     template_name = 'music/songs.html'
     context_object_name = 'all_songs'
     def get_queryset(self):
         return Song.objects.all()
 
-class DetailView(generic.DetailView):
+class DetailView(DetailView):
     model = Album
     template_name = 'music/detail.html'
 
