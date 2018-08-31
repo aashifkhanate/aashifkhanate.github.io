@@ -1,5 +1,6 @@
 {% extends "music/base.html" %}
-{% block title %}Register yourself with Onix{% endblock %}
+{% block title %}Register{% endblock %}
+{% block auth_active %}active{% endblock %}
 
 {% block body %}
   <div class="container-fluid">
@@ -12,7 +13,7 @@
               {% include "music/form-template.html" %}
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-success" name="button">Submit</button>
+                  <button type="submit" class="btn btn-success" name="button">Register</button>
                 </div>
               </div>
             </form>

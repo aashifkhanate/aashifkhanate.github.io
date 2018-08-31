@@ -11,7 +11,7 @@
     <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
-          <a id = "home_link" href="{%url 'music:index'%}">
+          <a id = "home_link" href="{%url 'index'%}">
           <img id = "logo" src="{%static 'music/images/onix.png'%}">nix</a>
           <button type="button" name="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
             <span class="icon-bar"></span>
@@ -21,38 +21,49 @@
         </div>
         <div class="collapse navbar-collapse" id = "topNavBar">
           <ul class="nav navbar-nav">
-            <li class="active">
-              <a href="{%url 'music:index'%}">
+            <li class="{% block albums_active %}{% endblock %}">
+              <a href="{%url 'index'%}">
                 <span class="glyphicon glyphicon-cd" aria-hidden="true"></span>&nbsp;Albums
               </a>
             </li>
-            <li class="">
-              <a href="{%url 'music:songs'%}">
+            <li class="{% block songs_active %}{% endblock %}">
+              <a href="{%url 'songs'%}">
                 <span class="glyphicon glyphicon-music" aria-hidden="false"></span>&nbsp;Songs
               </a>
             </li>
           </ul>
 
-          <form class="navbar-form navbar-left" action="{%url 'music:search'%}" method="get" role="search">
+          <form class="navbar-form navbar-left" action="{%url 'search'%}" method="get">
             <div class="form-group">
               <input type="text" name="q" value="" class="form-control">
             </div>
-            <button type="submit" class="btn btn-default" name="button">Search</button>
+            <button type="submit" class="btn btn-default">Search</button>
           </form>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="">
-              <a href="{%url 'music:album-add'%}">
-                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>&nbsp;Add Album
+            <li class="{% block add_song_active %}{% endblock %}">
+              <a href="{%url 'song-add'%}">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add Song
               </a>
             </li>
-            <li class="">
-              <a href="#">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>&nbsp;Logout
+            <li class="{% block add_album_active %}{% endblock %}">
+              <a href="{%url 'album-add'%}">
+                <span class="glyphicon glyphicon-plus"></span>&nbsp;Add Album
               </a>
+            </li>
+
+            <li class="{% block auth_active %}{% endblock %}">
+            {%if user.is_authenticated%}
+              <a href="{%url 'logout'%}">
+                <span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout
+              </a>
+            {%else%}
+              <a href="{%url 'login'%}">
+                <span class="glyphicon glyphicon-log-in"></span>&nbsp;Login
+              </a>
+            {%endif%}
             </li>
           </ul>
-
         </div>
       </div>
     </nav>

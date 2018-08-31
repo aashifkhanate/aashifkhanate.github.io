@@ -1,13 +1,17 @@
 {%extends 'music/base.html'%}
 {%block title%}All Songs{%endblock%}
+{% block songs_active %}active{% endblock %}
 {% block body %}
 
 <ul>
   {% for song in all_songs %}
   	<p>
-  		{%url 'music:index'%}
-  		{{request.get_host}}
     <a href="http://{{request.get_host}}/media/{{song.song_file}}">{{song.song_title}}.{{song.file_type}} - {{song.album.artist}}</a>
+    {% if song.is_favorite %}
+		<span class="glyphicon glyphicon-star"></span>
+    {% else %}
+    	<span class="glyphicon glyphicon-star-empty"></span>
+    {% endif %}
 	</p>
   {% endfor %}
 </ul>
@@ -16,27 +20,3 @@
   {{error_message}}
 {%endif%}
 {%endblock%}
-
-5
-0 0
-100 100
-70 40 
-30 10 
-10 5 
-90 70 
-50 20
-
-6
-88 81
-85 80
-19 22 
-31 15 
-27 29 
-30 10 
-20 26 
-5 14
-
-3
-88 81
-85 80
-19 22 

@@ -5,6 +5,7 @@
 <ul>
   {% for song in all_songs %}
     {{song.song_title}}.{{song.file_type}} - {{song.album.artist}}
+    <br>
   {% endfor %}
 </ul>
 
