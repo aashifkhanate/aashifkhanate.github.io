@@ -49,7 +49,7 @@ class AlbumUpdate(UpdateView):
 
 class AlbumDelete(DeleteView):
     model = Album
-    success_url = reverse_lazy('music:index')
+    success_url = reverse_lazy('index')
 
 class SongCreate(CreateView):
     model = Song
