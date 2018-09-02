@@ -2,10 +2,36 @@
 {%block title%}Album Details{%endblock%}
 {% block body %}
 
-<img src="{{album.album_logo.url}}">
+<div class="jumbotron" align="center">
+	<img src="{{album.album_logo.url}}">
+	<h2>{{album.album_title}}</h2>
+	<h4>{{album.artist}}</h4>
+	<a href="{%url 'album-update' album.id%}"><span class="glyphicon glyphicon-edit"></span></a>
+</div>
 
-<h1>{{album.album_title}}</h1>
-<h3>{{album.artist}}</h3>
+{% for song in songs %}
+  <div class="col-sm-4 col-lg-4" align="center">
+    <div class="jumbotron" id = "sanakhan">
+      <audio controls>
+        <source src="{{song.song_file.url}}" type="audio/mpeg">
+      </audio>
+      <br>
+    <strong> {{song.song_title}}.{{song.file_type}} </strong> - <i>{{song.album.artist}}</i>
+    {% if song.is_favorite %}
+		<span class="glyphicon glyphicon-star"></span>
+    {% else %}
+    	<span class="glyphicon glyphicon-star-empty"></span>
+    {% endif %}
+    <br>Album: {{song.album.album_title}}
+  </div>
+</div>
+{% endfor %}
+
+<div class="col-sm-4 col-lg-4" align="center">
+    <div class="jumbotron" id = "sanakhan">
+    	<a href="{%url 'song-add' album.id%}"><span class="glyphicon glyphicon-plus" style="font-size: 50px"></span></a>
+  </div>
+</div>
 
 {%if error_message%}
   {{error_message}}

@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.views.generic import View, ListView, DetailView
 from .forms import LoginForm, RegisterForm
 from django.db.models import Q
-
+from django.utils import timezone
 
 class SearchView(ListView):
     template_name = 'music/search.html'
@@ -19,9 +19,8 @@ class SearchView(ListView):
             queryset_list = queryset_list.filter(
                 Q(song_title__icontains=query)
             )
+        print(queryset_list)
         return queryset_list
-
-
 
 class IndexView(ListView):
     template_name = 'music/index.html'
@@ -38,6 +37,11 @@ class SongList(ListView):
 class DetailView(DetailView):
     model = Album
     template_name = 'music/detail.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['songs'] = Song.objects.all().filter(album = context['album'])
+        print(context)
+        return context
 
 class AlbumCreate(CreateView):
     model = Album
@@ -67,6 +71,8 @@ class RegisterView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
+            print(user)
+            print(type(user))
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
             user.set_password(password)

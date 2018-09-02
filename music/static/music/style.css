@@ -7,6 +7,7 @@ a{
   color: white;
 }
 
+
 #logo{
   max-width:80px;
   max-height:50px;
@@ -18,10 +19,27 @@ a{
 .jumbotron{
   height: 300px;
   color: white;
-  background-color: rgba(30, 30, 30, 0.6);
+  background-color: rgba(30, 30, 30, 0.8);
   padding: 10px;
   font-family: monospace;
 }
+
+#asifkhan{
+  height: 300px;
+  color: white;
+  background-color: rgba(30, 30, 30, 0.8);
+  padding: 10px;
+  font-family: monospace;
+}
+
+#shaistakhan{
+  height: 80px;
+}
+
+#sanakhan{
+  height: 100px;
+}
+
 
 .navbar{
   padding: 0px;
@@ -44,13 +62,13 @@ a{
 }
 
 .jumbotron img{
-  max-width: 150px;
+  max-width: 250px;
   max-height: 150px;
 }
 
 #simranjeet{
-  max-width: 100px;
-  max-height: 100px;
+  max-width: 150px;
+  max-height: 150px;
   overflow: hidden;
 }
 

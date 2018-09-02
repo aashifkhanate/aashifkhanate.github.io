@@ -3,18 +3,27 @@
 {% block songs_active %}active{% endblock %}
 {% block body %}
 
-<ul>
-  {% for song in all_songs %}
-  	<p>
-    <a href="http://{{request.get_host}}/media/{{song.song_file}}">{{song.song_title}}.{{song.file_type}} - {{song.album.artist}}</a>
+{% for song in all_songs %}
+  <div class="col-sm-4 col-lg-4" align="center">
+    <div class="jumbotron">
+      <div id = "simranjeet">
+      <img src="{{song.album.album_logo.url}}" alt="">  
+      </div>
+      <br>
+      <audio controls>
+        <source src="{{song.song_file.url}}" type="audio/mpeg">
+      </audio>
+      <br>
+    <strong> {{song.song_title}}.{{song.file_type}} </strong> - <i>{{song.album.artist}}</i>
     {% if song.is_favorite %}
 		<span class="glyphicon glyphicon-star"></span>
     {% else %}
     	<span class="glyphicon glyphicon-star-empty"></span>
     {% endif %}
-	</p>
-  {% endfor %}
-</ul>
+    <br>Album: {{song.album.album_title}}
+  </div>
+</div>
+{% endfor %}
 
 {%if error_message%}
   {{error_message}}
